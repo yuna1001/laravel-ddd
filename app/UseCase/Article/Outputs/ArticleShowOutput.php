@@ -15,11 +15,17 @@ final class ArticleShowOutput extends Output
     private string $articleTitle;
 
     /**
+     * @var string
+     */
+    private string $articleContent;
+
+    /**
      * @param string $articleTitle
      */
-    public function __construct(string $articleTitle)
+    public function __construct(string $articleTitle, string $articleContent)
     {
-        $this->articleTitle = $articleTitle;
+        $this->articleTitle   = $articleTitle;
+        $this->articleContent = $articleContent;
     }
 
     /**
@@ -29,6 +35,7 @@ final class ArticleShowOutput extends Output
     {
         return [
             'title'   => $this->articleTitle,
+            'content' => $this->articleContent,
         ];
     }
 }

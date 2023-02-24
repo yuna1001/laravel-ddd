@@ -32,6 +32,7 @@ class ArticleService
 
         return new ArticleShowOutput(
             $article->articleTitle->title,
+            $article->articleContent->content,
         );
     }
 }
