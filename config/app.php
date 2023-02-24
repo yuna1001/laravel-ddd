@@ -182,6 +182,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        // DIリポジトリサービスプロバイダー
+        App\Providers\DiRepositoryServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
