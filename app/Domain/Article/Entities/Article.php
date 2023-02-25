@@ -3,6 +3,7 @@
 namespace App\Domain\Article\Entities;
 
 use App\Domain\Article\Ids\ArticleId;
+use App\Domain\Article\ValueObjects\ArticleWriterName;
 use App\Domain\Article\ValueObjects\ArticleTitle;
 use App\Domain\Article\ValueObjects\ArticleContent;
 use App\Domain\Entity;
@@ -18,6 +19,11 @@ final class Article extends Entity
     use ImmutableTrait;
 
     /**
+     * @var ArticleWriterName
+     */
+    private ArticleWriterName $articleWriterName;
+
+    /**
      * @var ArticleTitle
      */
     private ArticleTitle $articleTitle;
@@ -28,14 +34,16 @@ final class Article extends Entity
     private ArticleContent $articleContent;
 
     /**
-     * @param ArticleId      $articleId
-     * @param ArticleTitle   $articleTitle
-     * @param ArticleContent $articleContent
+     * @param ArticleId         $articleId
+     * @param ArticleWriterName $articleWriterName
+     * @param ArticleTitle      $articleTitle
+     * @param ArticleContent    $articleContent
      */
-    public function __construct(ArticleId $articleId, ArticleTitle $articleTitle, ArticleContent $articleContent)
+    public function __construct(ArticleId $articleId, ArticleWriterName $articleWriterName, ArticleTitle $articleTitle, ArticleContent $articleContent)
     {
-        $this->id             = $articleId;
-        $this->articleTitle   = $articleTitle;
-        $this->articleContent = $articleContent;
+        $this->id                = $articleId;
+        $this->articleWriterName = $articleWriterName;
+        $this->articleTitle      = $articleTitle;
+        $this->articleContent    = $articleContent;
     }
 }

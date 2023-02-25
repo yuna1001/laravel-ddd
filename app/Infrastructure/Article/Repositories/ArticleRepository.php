@@ -6,7 +6,6 @@ use App\Domain\Article\Entities\Article;
 use App\Domain\Article\Repositories\ArticleRepository as ArticleRepositoryInterface;
 use App\Domain\Article\Ids\ArticleId;
 use App\Infrastructure\Article\DTOs\ArticleDTO;
-use App\Infrastructure\Article\DTOs\DevArticleDTO;
 use App\Infrastructure\Repository;
 
 /**
@@ -15,14 +14,14 @@ use App\Infrastructure\Repository;
 final class ArticleRepository extends Repository implements ArticleRepositoryInterface
 {
     /**
-     * @var DevArticleDTO
+     * @var ArticleDTO
      */
-    private DevArticleDTO $articleDTO;
+    private ArticleDTO $articleDTO;
 
     /**
-     * @param DevArticleDTO $articleDTO
+     * @param ArticleDTO $articleDTO
      */
-    public function __construct(DevArticleDTO $articleDTO)
+    public function __construct(ArticleDTO $articleDTO)
     {
         $this->articleDTO = $articleDTO;
     }

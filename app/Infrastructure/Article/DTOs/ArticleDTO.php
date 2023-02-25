@@ -4,8 +4,10 @@ namespace App\Infrastructure\Article\DTOs;
 
 use App\Domain\Article\Entities\Article;
 use App\Domain\Article\Ids\ArticleId;
+use App\Domain\Article\ValueObjects\ArticleContent;
 use App\Domain\Article\ValueObjects\ArticleTitle;
-use App\Traits\DTOTrait;
+use App\Domain\Article\ValueObjects\ArticleWriterName;
+use App\Infrastructure\Writer\DTOs\WriterDTO;
 use Database\Factories\ArticleDTOFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,19 +18,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class ArticleDTO extends Model
 {
-    use DTOTrait;
     use HasFactory;
 
     /**
      * @var string
      */
-    protected $table = "articles";
+    protected $table = "article";
 
     /**
      * @var array
      */
     protected $cast = [
-        'id' => 'integer'
+        'id'        => 'integer',
+        'writer_id' => 'integer',
     ];
 
     /**
@@ -39,15 +41,21 @@ final class ArticleDTO extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     /**
      * @var array
      */
     protected $fillable = [
+        'writer_id',
         'title',
+        'content',
     ];
+
+    public function writer()
+    {
+        return $this->belongsTo(WriterDTO::class);
+    }
 
     /**
      * DTOを記事エンティティに変換します．
@@ -58,7 +66,9 @@ final class ArticleDTO extends Model
     {
         return new Article(
             new ArticleId($this->id),
+            new ArticleWriterName($this->writer->name),
             new ArticleTitle($this->title),
+            new ArticleContent($this->content)
         );
     }
 

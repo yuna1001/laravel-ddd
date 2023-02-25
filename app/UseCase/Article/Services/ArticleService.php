@@ -4,6 +4,7 @@ namespace App\UseCase\Article\Services;
 
 use App\Domain\Article\Ids\ArticleId;
 use App\Domain\Article\Repositories\ArticleRepository;
+use App\Domain\Writer\Ids\WriterId;
 use App\Exceptions\UnauthorizedAccessException;
 use App\UseCase\Article\Inputs\ArticleShowInput;
 use App\UseCase\Article\Outputs\ArticleShowOutput;
@@ -33,6 +34,7 @@ class ArticleService
         return new ArticleShowOutput(
             $article->articleTitle->title,
             $article->articleContent->content,
+            $article->articleWriterName->writerName,
         );
     }
 }

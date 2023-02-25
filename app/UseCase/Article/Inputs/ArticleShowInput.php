@@ -14,10 +14,11 @@ final class ArticleShowInput extends ShowInput
     /**
      * @var int
      */
-    protected int $authId;
+    protected int $writerId;
 
     /**
      * @param int $id
+     * @param int $writerId
      */
     public function __construct(int $id)
     {

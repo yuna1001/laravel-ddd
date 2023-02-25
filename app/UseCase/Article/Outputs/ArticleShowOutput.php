@@ -20,12 +20,18 @@ final class ArticleShowOutput extends Output
     private string $articleContent;
 
     /**
+     * @var string
+     */
+    private string $articleWriterName;
+
+    /**
      * @param string $articleTitle
      */
-    public function __construct(string $articleTitle, string $articleContent)
+    public function __construct(string $articleTitle, string $articleContent, string $articleWriterName)
     {
-        $this->articleTitle   = $articleTitle;
-        $this->articleContent = $articleContent;
+        $this->articleTitle      = $articleTitle;
+        $this->articleContent    = $articleContent;
+        $this->articleWriterName = $articleWriterName;
     }
 
     /**
@@ -34,8 +40,9 @@ final class ArticleShowOutput extends Output
     public function toArray(): array
     {
         return [
-            'title'   => $this->articleTitle,
-            'content' => $this->articleContent,
+            'title'      => $this->articleTitle,
+            'content'    => $this->articleContent,
+            'writerName' => $this->articleWriterName,
         ];
     }
 }
