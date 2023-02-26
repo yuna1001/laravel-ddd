@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Writer\DTOs;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class WriterDTO extends Model
 {
-    use HasFactory;
-
     /**
      * @var string
      */

@@ -10,6 +10,8 @@ use App\Infrastructure\Repository;
 
 /**
  * 記事リポジトリ実装クラス
+ * 
+ * DB <-> ORM(Eloquent) <-> エンティティ
  */
 final class ArticleRepository extends Repository implements ArticleRepositoryInterface
 {

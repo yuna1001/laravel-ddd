@@ -32,6 +32,7 @@ class ArticleService
         $article   = $this->articleRepository->findById($articleId);
 
         return new ArticleShowOutput(
+            $article->id->id,
             $article->articleTitle->title,
             $article->articleContent->content,
             $article->articleWriterName->writerName,

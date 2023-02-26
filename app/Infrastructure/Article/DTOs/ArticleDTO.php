@@ -4,13 +4,11 @@ namespace App\Infrastructure\Article\DTOs;
 
 use App\Domain\Article\Entities\Article;
 use App\Domain\Article\Ids\ArticleId;
+use App\Domain\Article\Ids\ArticleWriterId;
 use App\Domain\Article\ValueObjects\ArticleContent;
 use App\Domain\Article\ValueObjects\ArticleTitle;
 use App\Domain\Article\ValueObjects\ArticleWriterName;
 use App\Infrastructure\Writer\DTOs\WriterDTO;
-use Database\Factories\ArticleDTOFactory;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class ArticleDTO extends Model
 {
-    use HasFactory;
-
     /**
      * @var string
      */
@@ -66,21 +62,10 @@ final class ArticleDTO extends Model
     {
         return new Article(
             new ArticleId($this->id),
+            new ArticleWriterId($this->writer_id),
             new ArticleWriterName($this->writer->name),
             new ArticleTitle($this->title),
             new ArticleContent($this->content)
         );
-    }
-
-    /**
-     * NOTE:
-     * Factoryの名前空間を正しく解決できない．
-     * @see https://github.com/laravel/framework/issues/37038
-     *
-     * @return Factory
-     */
-    protected static function newFactory()
-    {
-        return ArticleDTOFactory::new();
     }
 }
