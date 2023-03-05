@@ -46,17 +46,40 @@ final class Article extends Entity
      * @param ArticleTitle      $articleTitle
      * @param ArticleContent    $articleContent
      */
-    public function __construct(
+    private function __construct( // 外から呼び出せないようにするため
         ArticleId $articleId,
         ArticleWriterId $articleWriterId,
         ArticleWriterName $articleWriterName,
         ArticleTitle $articleTitle,
         ArticleContent $articleContent
     ) {
+        // 不変な属性
         $this->id                = $articleId;
         $this->articleWriterId   = $articleWriterId;
         $this->articleWriterName = $articleWriterName;
-        $this->articleTitle      = $articleTitle;
-        $this->articleContent    = $articleContent;
+
+        // 可変な属性
+        $this->articleTitle   = $articleTitle;
+        $this->articleContent = $articleContent;
+    }
+
+    /**
+     * 新しい記事を作成する
+     * 
+     * @param  ArticleWriterId   $articleWriterId
+     * @param  ArticleWriterName $articleWriterName
+     * @param  ArticleTitle      $articleTitle
+     * @param  ArticleContent    $articleContent
+     * @return Article
+     */
+    public static function create(ArticleWriterId $articleWriterId, ArticleWriterName $articleWriterName, ArticleTitle $articleTitle, ArticleContent $articleContent)
+    {
+        return new Article(
+            new ArticleId(1), // TODO 採番する
+            $articleWriterId,
+            $articleWriterName,
+            $articleTitle,
+            $articleContent,
+        );
     }
 }
